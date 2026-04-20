@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HashRouter, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import axios from './api.js';
 import './index.css';
 
@@ -76,11 +76,9 @@ function Calculator() {
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<Calculator />} />
-      </Routes>
-    </HashRouter>
+    <Routes>
+      <Route path="/" element={<Calculator />} />
+    </Routes>
   );
 }
 

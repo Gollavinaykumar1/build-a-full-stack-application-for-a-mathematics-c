@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
-import axios from '../api';
+import axios from './api.js';
 import './index.css';
 
 function Calculator() {

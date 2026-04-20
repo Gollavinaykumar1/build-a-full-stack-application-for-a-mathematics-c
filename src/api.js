@@ -1,9 +1,30 @@
-import axios from 'axios';
+import axios from "axios";
+
+const BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:8000"
+    : window.location.origin);
 
 const api = axios.create({
-  baseURL: 'https://build-a-full-stack-application-for-a-mathematics-c.onrender.com',
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: `${BASE_URL}/api/v1`,
+  headers: { "Content-Type": "application/json" },
   timeout: 30000,
 });
+
+api.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response?.status === 401) localStorage.removeItem("via_token");
+    return Promise.reject(err);
+  }
+);
+
+export const getItems   = (params = {}) => api.get("/items", { params });
+export const getItem    = (id)           => api.get(`/items/${id}`);
+export const createItem = (data)         => api.post("/items", data);
+export const updateItem = (id, data)     => api.put(`/items/${id}`, data);
+export const deleteItem = (id)           => api.delete(`/items/${id}`);
+export const getStats   = ()             => api.get("/stats");
 
 export default api;

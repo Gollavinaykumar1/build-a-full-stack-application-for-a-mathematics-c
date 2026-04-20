@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8000';
-
 const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: 'https://build-a-full-stack-application-for-a-mathematics-c.onrender.com',
+  headers: { 'Content-Type': 'application/json' },
+  timeout: 30000,
 });
 
 export default api;
